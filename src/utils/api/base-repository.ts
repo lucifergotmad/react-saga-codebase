@@ -12,7 +12,7 @@ class BaseRepository {
 
   constructor() {
     this.http = axios.create({
-      baseURL: '/',
+      baseURL: process.env.API_URL,
     });
   }
 
