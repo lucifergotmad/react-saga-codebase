@@ -9,4 +9,5 @@ export const schema = yup.object().shape({
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
       'Password must contain atleast 1 uppercase, lowercase, number, and symbols',
     ),
+  rememberMe: yup.boolean().optional(),
 });

@@ -7,11 +7,13 @@ import { schema } from './sign-in.schema';
 export type TSignInInput = {
   username: string;
   password: string;
+  rememberMe?: boolean;
 };
 
 const INITIAL_VALUES: TSignInInput = {
   username: 'admin',
   password: 'B1n4ry1010&',
+  rememberMe: false,
 };
 
 const SignIn = () => {
@@ -29,9 +31,9 @@ const SignIn = () => {
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
-        <Card className="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0 dark:border dark:border-gray-700 dark:bg-gray-800">
+        <Card className="w-full rounded-lg bg-white shadow dark:border dark:border-gray-700 dark:bg-gray-800 sm:max-w-md md:mt-0 xl:p-0">
           <div className="space-y-4 p-6 sm:p-8 md:space-y-6">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
               Sign in to your account
             </h1>
             <form
@@ -86,9 +88,9 @@ const SignIn = () => {
                 <div className="flex items-start">
                   <div className="flex h-5 items-center">
                     <Checkbox
+                      {...register('rememberMe')}
                       id="remember"
                       aria-describedby="remember"
-                      required
                     />
                   </div>
                   <div className="ml-3 text-sm">
