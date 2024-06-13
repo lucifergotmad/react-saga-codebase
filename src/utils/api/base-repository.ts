@@ -19,6 +19,7 @@ class BaseRepository {
   private getConfig(
     params?: Record<string, number | string | boolean | undefined>,
   ): AxiosRequestConfig {
+    const accessToken = '';
     const timestamp = new Date().toISOString();
     const signature = generateSignature(timestamp);
 
@@ -27,7 +28,7 @@ class BaseRepository {
         timestamp: timestamp,
         signature: signature,
         Accept: 'application/json',
-        Authorization: 'Bearer Token',
+        Authorization: `Bearer ${accessToken}`,
       },
       params: params,
     };
