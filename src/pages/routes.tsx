@@ -1,7 +1,6 @@
-import type { FC } from 'react';
+import App from '@/App';
+import { createBrowserRouter } from 'react-router-dom';
 
-const Routes: FC = () => {
-  return <></>;
-};
+const routes = createBrowserRouter([{ element: <App /> }]);
 
-export default Routes;
+export default routes;

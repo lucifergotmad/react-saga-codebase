@@ -1,10 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { ISignInInput } from './type';
-import { schema } from './schema';
+import { schema } from './sign-in.schema';
 
-const INITIAL_VALUES: ISignInInput = {
+export type TSignInInput = {
+  username: string;
+  password: string;
+};
+
+const INITIAL_VALUES: TSignInInput = {
   username: 'admin',
   password: 'admin',
 };
@@ -14,12 +18,12 @@ const SignIn = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISignInInput>({
+  } = useForm<TSignInInput>({
     defaultValues: INITIAL_VALUES,
     resolver: yupResolver(schema),
   });
 
-  const onSubmitHandler = (data: ISignInInput) => console.log(data);
+  const onSubmitHandler = (data: TSignInInput) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
