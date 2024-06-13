@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-const VITE_APP_ENCRYPTION_MODE = process.env.VITE_APP_ENCRYPTION_MODE;
 const ENCRYPT_KEY = process.env.ENCRYPT_KEY!;
 
 export const encryptASCII = (str: string): string => {
@@ -22,7 +19,7 @@ export const encryptASCII = (str: string): string => {
       nKey += 1;
     }
   }
-  return Number(VITE_APP_ENCRYPTION_MODE) ? str : strEnc.toUpperCase();
+  return strEnc.toUpperCase();
 };
 
 export const decryptASCII = (str: string): string | undefined => {
@@ -51,7 +48,7 @@ export const decryptASCII = (str: string): string | undefined => {
       }
       i += 2;
     }
-    return Number(VITE_APP_ENCRYPTION_MODE) ? str : strDec;
+    return strDec;
   }
 };
 
@@ -68,10 +65,6 @@ const convertToString = (asci: number): string => {
 };
 
 export const doEncrypt = (dataBeforeCopy: any, ignore: string[] = []): any => {
-  if (!Number(VITE_APP_ENCRYPTION_MODE)) {
-    return dataBeforeCopy;
-  }
-
   if (!dataBeforeCopy) {
     return dataBeforeCopy;
   }
@@ -114,10 +107,6 @@ export const doEncrypt = (dataBeforeCopy: any, ignore: string[] = []): any => {
 };
 
 export const doDecrypt = (dataBeforeCopy: any, ignore: string[] = []): any => {
-  if (!Number(VITE_APP_ENCRYPTION_MODE)) {
-    return dataBeforeCopy;
-  }
-
   if (!dataBeforeCopy) {
     return dataBeforeCopy;
   }
