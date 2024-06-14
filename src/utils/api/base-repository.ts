@@ -51,7 +51,7 @@ class BaseRepository {
     }
   }
 
-  async post<T>(endpoint: string, data?: T): Promise<IAPIResponse<T>> {
+  async post<K, T>(endpoint: string, data?: K): Promise<IAPIResponse<T>> {
     try {
       const response = await this.http.post(endpoint, data);
       console.log(`POST ${endpoint} berhasil`);
@@ -63,4 +63,6 @@ class BaseRepository {
   }
 }
 
-export default BaseRepository;
+const Repository = new BaseRepository();
+
+export default Repository;
