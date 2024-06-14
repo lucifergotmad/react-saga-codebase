@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Card, Checkbox, TextInput } from 'flowbite-react';
 
 import { schema } from '@pages/auth/sign-in/schema';
+import { Link } from 'react-router-dom';
 
 export type SignInInput = {
   username: string;
@@ -114,12 +115,12 @@ const SignIn = () => {
               </Button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don't have an account yet?{' '}
-                <a
-                  href="#"
+                <Link
+                  to={'/auth/sign-up'}
                   className="text-primary-600 dark:text-primary-500 font-medium hover:underline"
                 >
                   Sign up
-                </a>
+                </Link>
               </p>
             </form>
           </div>
