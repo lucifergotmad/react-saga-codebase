@@ -17,7 +17,7 @@ export const uploadImage = async (
   fileName: string,
 ): Promise<TResponse> => {
   try {
-    const imageRef = ref(storage, `${import.meta.env.BASE_URL}/${fileName}`);
+    const imageRef = ref(storage, `${fileName}`);
     const uploadImage = await uploadBytes(imageRef, file);
 
     const newMetadata = {
@@ -28,7 +28,7 @@ export const uploadImage = async (
     await updateMetadata(imageRef, newMetadata);
 
     const publicImageUrl = await getDownloadURL(imageRef);
-    return { data: publicImageUrl, message: 'Berhasil!' };
+    return { data: publicImageUrl, message: 'Success!' };
   } catch (error) {
     throw new Error('Error uploading image!');
   }
@@ -36,9 +36,9 @@ export const uploadImage = async (
 
 export const deleteImage = async (fileName: string): Promise<TResponse> => {
   try {
-    const imageRef = ref(storage, `SHOES/${fileName}`);
+    const imageRef = ref(storage, `${fileName}`);
     await deleteObject(imageRef);
-    return { message: 'Berhasil!' };
+    return { message: 'Success!' };
   } catch (error) {
     throw new Error('Error deleting image!');
   }

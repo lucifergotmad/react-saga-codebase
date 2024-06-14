@@ -1,14 +1,14 @@
 import { doDecrypt, doEncrypt } from './encryptor';
 
 interface ILocalStorageItem<T> {
-  nama: string;
+  name: string;
   data: T;
 }
 
-export const getItem = <T>(nama: string): T => {
+export const getItem = <T>(name: string): T => {
   if (typeof window !== 'undefined') {
-    const encryptedNama = doEncrypt(nama);
-    const item = localStorage.getItem(encryptedNama);
+    const encryptedName = doEncrypt(name);
+    const item = localStorage.getItem(encryptedName);
 
     if (item !== null) {
       const decryptedData = doDecrypt(JSON.parse(item));
@@ -20,19 +20,19 @@ export const getItem = <T>(nama: string): T => {
   return [] as T;
 };
 
-export const setItem = <T>(nama: string, data: T) => {
+export const setItem = <T>(name: string, data: T) => {
   if (typeof window !== 'undefined') {
     const item: ILocalStorageItem<T> = {
-      nama: doEncrypt(nama),
+      name: doEncrypt(name),
       data: doEncrypt(data),
     };
 
-    localStorage.setItem(item.nama, JSON.stringify(item.data));
+    localStorage.setItem(item.name, JSON.stringify(item.data));
   }
 };
 
-export const removeItem = (nama: string) => {
+export const removeItem = (name: string) => {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem(doEncrypt(nama));
+    localStorage.removeItem(doEncrypt(name));
   }
 };

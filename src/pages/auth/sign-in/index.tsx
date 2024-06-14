@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Card, Checkbox, TextInput } from 'flowbite-react';
 
-import { schema } from './sign-in.schema';
+import { schema } from '@pages/auth/sign-in/schema';
 
 export type TSignInInput = {
   username: string;
