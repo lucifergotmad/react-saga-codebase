@@ -1,6 +1,6 @@
 import Repository from '@utils/api/base-repository';
-import { USER_ENDPOINTS } from './user.endpoint';
-import { TSignInInput } from '@/pages/auth/sign-in';
+import { USER_ENDPOINTS } from './endpoint';
+import { SignInInput } from '@/pages/auth/sign-in';
 
 type UserData = {
   username: string;
@@ -9,8 +9,8 @@ type UserData = {
 export const login = async ({
   username,
   password,
-}: TSignInInput): Promise<UserData> => {
-  const response = await Repository.post<TSignInInput, UserData>(
+}: SignInInput): Promise<UserData> => {
+  const response = await Repository.post<SignInInput, UserData>(
     USER_ENDPOINTS.login,
     { username, password },
   );

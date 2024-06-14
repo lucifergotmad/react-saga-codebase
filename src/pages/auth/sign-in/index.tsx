@@ -4,13 +4,13 @@ import { Button, Card, Checkbox, TextInput } from 'flowbite-react';
 
 import { schema } from '@pages/auth/sign-in/schema';
 
-export type TSignInInput = {
+export type SignInInput = {
   username: string;
   password: string;
   rememberMe?: boolean;
 };
 
-const INITIAL_VALUES: TSignInInput = {
+const INITIAL_VALUES: SignInInput = {
   username: 'admin',
   password: 'B1n4ry1010&',
   rememberMe: false,
@@ -21,12 +21,12 @@ const SignIn = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TSignInInput>({
+  } = useForm<SignInInput>({
     defaultValues: INITIAL_VALUES,
     resolver: yupResolver(schema),
   });
 
-  const onSubmitHandler = (data: TSignInInput) => console.log(data);
+  const onSubmitHandler = (data: SignInInput) => console.log(data);
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
