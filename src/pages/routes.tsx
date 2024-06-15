@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, redirect } from 'react-router-dom';
 
 import Home from '@pages/home';
 import SignIn from '@pages/auth/sign-in';
@@ -19,8 +19,8 @@ const routes = createBrowserRouter([
   },
   {
     path: '/auth',
-    element: <NotFound />,
     children: [
+      { index: true, loader: async () => redirect('/auth/sign-in') },
       { path: 'sign-in', element: <SignIn /> },
       { path: 'sign-up', element: <SignUp /> },
     ],
