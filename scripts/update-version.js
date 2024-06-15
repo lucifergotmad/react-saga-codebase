@@ -32,7 +32,6 @@ class UpdateVersion {
       );
       return JSON.parse(buildPropertiesBytes);
     } catch (e) {
-      // console.log("[UpdateVersion][_readFieldBuildProperties]", e.message);
       throw new Error('Terdapat kesalahan saat membaca file build properties.');
     }
   }

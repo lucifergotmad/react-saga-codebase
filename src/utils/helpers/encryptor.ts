@@ -1,4 +1,4 @@
-const ENCRYPT_KEY = process.env.ENCRYPT_KEY!;
+const ENCRYPT_KEY = import.meta.env.VITE_APP_ENCRYPT_KEY;
 
 export const encryptASCII = (str: string): string => {
   const dataKey: { [key: number]: string } = {};

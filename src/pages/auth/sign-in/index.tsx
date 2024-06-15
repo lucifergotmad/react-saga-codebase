@@ -4,6 +4,11 @@ import { Button, Card, Checkbox, TextInput } from 'flowbite-react';
 
 import { schema } from '@pages/auth/sign-in/schema';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/config/store';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/config/root-state';
+import { signInStart } from '@/data/user.slice';
 
 export type SignInInput = {
   username: string;
@@ -18,6 +23,9 @@ const INITIAL_VALUES: SignInInput = {
 };
 
 const SignIn = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { isLoading } = useSelector((state: RootState) => state.user);
+
   const {
     register,
     handleSubmit,
@@ -27,7 +35,9 @@ const SignIn = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitHandler = (data: SignInInput) => console.log(data);
+  const onSubmitHandler = (data: SignInInput) => {
+    dispatch(signInStart(data));
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -110,7 +120,11 @@ const SignIn = () => {
                   Forgot password?
                 </a>
               </div>
-              <Button color="dark" type="submit">
+              <Button
+                color="dark"
+                type="submit"
+                disabled={isLoading ? true : false}
+              >
                 Sign in
               </Button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">

@@ -8,7 +8,7 @@ interface IAPIResponse<T> {
 }
 
 const client = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: import.meta.env.VITE_APP_API_URL,
 });
 
 const getConfig = (
@@ -16,7 +16,7 @@ const getConfig = (
 ): AxiosRequestConfig => {
   const accessToken = '';
   const timestamp = new Date().toISOString();
-  const signature = generateSignature(timestamp);
+  const signature = generateSignature(timestamp, accessToken);
 
   const config: AxiosRequestConfig = {
     headers: {

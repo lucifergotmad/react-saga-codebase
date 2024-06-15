@@ -5,11 +5,16 @@ import { USER_ENDPOINTS } from './endpoint';
 import { UserLoginResponse } from './types';
 
 export const login = async (data: SignInInput): Promise<UserLoginResponse> => {
-  const response = await request<SignInInput, UserLoginResponse>({
-    url: USER_ENDPOINTS.login,
-    method: 'POST',
-    data,
-  });
+  try {
+    const response = await request<SignInInput, UserLoginResponse>({
+      url: USER_ENDPOINTS.login,
+      method: 'POST',
+      data,
+    });
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    console.error('API request failed:', error);
+    throw error;
+  }
 };

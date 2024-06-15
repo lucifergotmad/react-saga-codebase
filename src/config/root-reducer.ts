@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux';
 
-export const rootReducer = combineReducers({});
+import userReducer from '@/data/user.slice';
+
+export const rootReducer = combineReducers({
+  user: userReducer,
+});
