@@ -1,3 +1,5 @@
+import { ENCRYPTION_IGNORE } from '@/shared/constants/encryption-ignore';
+
 const ENCRYPT_KEY = import.meta.env.VITE_APP_ENCRYPT_KEY;
 
 export const encryptASCII = (str: string): string => {
@@ -64,7 +66,10 @@ const convertToString = (asci: number): string => {
   return String.fromCharCode(asci);
 };
 
-export const doEncrypt = (dataBeforeCopy: any, ignore: string[] = []): any => {
+export const doEncrypt = (
+  dataBeforeCopy: any,
+  ignore: string[] = ENCRYPTION_IGNORE,
+): any => {
   if (!dataBeforeCopy) {
     return dataBeforeCopy;
   }
@@ -106,7 +111,10 @@ export const doEncrypt = (dataBeforeCopy: any, ignore: string[] = []): any => {
   }
 };
 
-export const doDecrypt = (dataBeforeCopy: any, ignore: string[] = []): any => {
+export const doDecrypt = (
+  dataBeforeCopy: any,
+  ignore: string[] = ENCRYPTION_IGNORE,
+): any => {
   if (!dataBeforeCopy) {
     return dataBeforeCopy;
   }

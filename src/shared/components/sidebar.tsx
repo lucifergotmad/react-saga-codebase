@@ -1,8 +1,7 @@
+import type { FC } from 'react';
 import { Sidebar } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { HiUsers } from 'react-icons/hi';
-
-import type { FC } from 'react';
 
 const SidebarContainer: FC = () => {
   const [currentPage, setCurrentPage] = useState('');

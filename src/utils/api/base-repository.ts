@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+
 import { generateSignature } from '@utils/helpers/signature';
 import { getStorageItem } from '../helpers/storage';
 

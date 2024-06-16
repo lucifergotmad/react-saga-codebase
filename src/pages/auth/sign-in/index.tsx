@@ -4,6 +4,7 @@ import { Button, Card, Checkbox, TextInput } from 'flowbite-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import { schema } from '@pages/auth/sign-in/schema';
 import { AppDispatch } from '@/config/store';
@@ -12,7 +13,6 @@ import { PasswordType } from '@/shared/types/password-type';
 import { signInStart } from '@/data/auth/auth.slice';
 
 import PasswordInput from '@/shared/components/password-input';
-import { useEffect } from 'react';
 
 export type SignInInput = {
   username: string;

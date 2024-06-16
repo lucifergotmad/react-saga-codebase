@@ -6,36 +6,38 @@ import SignUp from '@pages/auth/sign-up';
 import AdminDashboard from '@pages/admin';
 import DashboardLayout from '@/shared/layouts/dashboard';
 import NotFound from '@/shared/pages/not-found';
+import NavigationHandler from '@/shared/components/navigation-handler';
+
 import { PrivateRoutes } from './private-routes';
 
 const routes = createBrowserRouter([
-  { path: '/', element: <Home /> },
   {
-    path: '/admin',
-    element: (
-      <PrivateRoutes>
-        <DashboardLayout isFooter={false} />
-      </PrivateRoutes>
-    ),
+    path: '/',
+    element: <NavigationHandler />,
     children: [
+      { index: true, element: <Home /> },
       {
-        index: true,
-        element: <AdminDashboard />,
+        path: 'admin',
+        element: (
+          <PrivateRoutes>
+            <DashboardLayout isFooter={false} />
+          </PrivateRoutes>
+        ),
+        children: [
+          { index: true, element: <AdminDashboard /> },
+          { path: '*', element: <NotFound /> },
+        ],
+      },
+      {
+        path: 'auth',
+        children: [
+          { index: true, loader: async () => redirect('/auth/sign-in') },
+          { path: 'sign-in', element: <SignIn /> },
+          { path: 'sign-up', element: <SignUp /> },
+        ],
       },
       { path: '*', element: <NotFound /> },
     ],
-  },
-  {
-    path: '/auth',
-    children: [
-      { index: true, loader: async () => redirect('/auth/sign-in') },
-      { path: 'sign-in', element: <SignIn /> },
-      { path: 'sign-up', element: <SignUp /> },
-    ],
-  },
-  {
-    path: '*',
-    element: <NotFound />,
   },
 ]);
 

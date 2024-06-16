@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { TextInput, TextInputProps } from 'flowbite-react';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { UseFormRegisterReturn, FieldErrors } from 'react-hook-form';
+
 import { PasswordType } from '@/shared/types/password-type';
 
 interface PasswordInputProps extends TextInputProps {

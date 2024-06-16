@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 import { RootState } from '@/config/root-state';
 import { AuthState } from './auth.type';
 
