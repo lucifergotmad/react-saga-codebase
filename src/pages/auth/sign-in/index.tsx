@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Card, Checkbox, TextInput } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
@@ -12,6 +12,7 @@ import { PasswordType } from '@/shared/types/password-type';
 import { signInStart } from '@/data/auth/auth.slice';
 
 import PasswordInput from '@/shared/components/password-input';
+import { useEffect } from 'react';
 
 export type SignInInput = {
   username: string;
@@ -26,7 +27,10 @@ const INITIAL_VALUES: SignInInput = {
 
 const SignIn = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading } = useSelector((state: RootState) => state.auth);
+  const navigate = useNavigate();
+  const { isLoading, currentUser } = useSelector(
+    (state: RootState) => state.auth,
+  );
 
   const {
     register,
@@ -40,6 +44,12 @@ const SignIn = () => {
   const onSubmitHandler = (data: SignInInput) => {
     dispatch(signInStart(data));
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate('/admin');
+    }
+  }, [currentUser, navigate]);
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
