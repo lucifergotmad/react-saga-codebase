@@ -6,6 +6,7 @@ import SignUp from '@pages/auth/sign-up';
 import AdminDashboard from '@pages/admin';
 import DashboardLayout from '@/shared/layouts/dashboard';
 import NotFound from '@/shared/pages/not-found';
+import { PrivateRoutes } from './private-routes';
 
 const routes = createBrowserRouter([
   { path: '/', element: <Home /> },
@@ -13,7 +14,14 @@ const routes = createBrowserRouter([
     path: '/admin',
     element: <DashboardLayout isFooter={false} />,
     children: [
-      { index: true, element: <AdminDashboard /> },
+      {
+        index: true,
+        element: (
+          <PrivateRoutes>
+            <AdminDashboard />
+          </PrivateRoutes>
+        ),
+      },
       { path: '*', element: <NotFound /> },
     ],
   },

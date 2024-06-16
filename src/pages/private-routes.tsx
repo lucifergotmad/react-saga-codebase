@@ -9,7 +9,7 @@ export const PrivateRoutes = ({ children }: PrivateRoutesProps) => {
   const isLogin = false;
 
   if (!isLogin) {
-    return <Navigate to="/login" replace={true} />;
+    return <Navigate to="/auth/sign-in" replace={true} />;
   } else {
     return children;
   }

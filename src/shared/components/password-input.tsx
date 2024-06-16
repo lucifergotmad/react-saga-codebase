@@ -24,6 +24,7 @@ const PasswordInput: FC<PasswordInputProps> = ({
     <div className="relative">
       <TextInput
         {...passwordProps}
+        {...rest}
         type={isShowPassword ? 'text' : 'password'}
         id="password"
         color={errors.password ? 'failure' : undefined}
@@ -35,7 +36,6 @@ const PasswordInput: FC<PasswordInputProps> = ({
             </>
           )
         }
-        {...rest}
       />
       <button
         type="button"
