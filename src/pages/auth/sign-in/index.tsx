@@ -9,12 +9,13 @@ import { AppDispatch } from '@/config/store';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/config/root-state';
 import { signInStart } from '@/data/user.slice';
+import { PasswordType } from '@/shared/types/password-type';
+import PasswordInput from '@/shared/components/password-input';
 
 export type SignInInput = {
   username: string;
-  password: string;
   rememberMe?: boolean;
-};
+} & PasswordType;
 
 const INITIAL_VALUES: SignInInput = {
   username: 'admin',
@@ -80,19 +81,9 @@ const SignIn = () => {
                 >
                   Password
                 </label>
-                <TextInput
-                  {...register('password')}
-                  type="password"
-                  id="password"
-                  color={errors.password && 'failure'}
-                  helperText={
-                    errors.password && (
-                      <>
-                        <span className="font-medium">Oops!</span>{' '}
-                        {errors.password.message}
-                      </>
-                    )
-                  }
+                <PasswordInput
+                  passwordProps={register('password')}
+                  errors={errors}
                 />
               </div>
               <div className="flex items-center justify-between">
