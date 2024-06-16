@@ -19,6 +19,7 @@ import type { PersistConfig } from 'redux-persist';
 import { rootSaga } from '@/config/root-saga';
 import { rootReducer } from '@/config/root-reducer';
 import { RootState } from '@/config/root-state';
+import { authTransform } from '@/data/auth/auth.transform';
 
 type ExtendedPersistConfig = PersistConfig<RootState> & {
   whitelist: (keyof RootState)[];
@@ -28,6 +29,7 @@ export const persistConfig: ExtendedPersistConfig = {
   key: 'root',
   storage,
   whitelist: ['auth'],
+  transforms: [authTransform],
 };
 
 const sagaMiddleware = createSagaMiddleware();
