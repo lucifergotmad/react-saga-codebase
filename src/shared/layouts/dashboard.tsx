@@ -13,7 +13,7 @@ const DashboardLayout: FC<PropsWithChildren<DashboardLayoutProps>> = ({
   isFooter = true,
 }) => {
   return (
-    <div className="h-screen w-full">
+    <div className="min-h-screen w-full">
       <NavbarContainer />
       <div className="flex h-full w-full items-start pt-2">
         <SidebarContainer />

@@ -27,7 +27,7 @@ type ExtendedPersistConfig = PersistConfig<RootState> & {
 export const persistConfig: ExtendedPersistConfig = {
   key: 'root',
   storage,
-  whitelist: [],
+  whitelist: ['user'],
 };
 
 const sagaMiddleware = createSagaMiddleware();

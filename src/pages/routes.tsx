@@ -12,15 +12,15 @@ const routes = createBrowserRouter([
   { path: '/', element: <Home /> },
   {
     path: '/admin',
-    element: <DashboardLayout isFooter={false} />,
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout isFooter={false} />
+      </PrivateRoutes>
+    ),
     children: [
       {
         index: true,
-        element: (
-          <PrivateRoutes>
-            <AdminDashboard />
-          </PrivateRoutes>
-        ),
+        element: <AdminDashboard />,
       },
       { path: '*', element: <NotFound /> },
     ],
