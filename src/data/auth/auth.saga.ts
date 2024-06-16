@@ -10,17 +10,34 @@ import {
 } from 'redux-saga/effects';
 import { login } from '@/utils/api/auth/repository';
 import { SignInInput } from '@/pages/auth/sign-in';
-import { UserData } from './auth.type';
+import { setLocalStorageItem } from '@/utils/helpers/local-storage';
+import { UserLoginResponse } from '@/utils/api/auth/types';
+import { setSessionStorageItem } from '@/utils/helpers/session-storage';
 
 function* signIn({
-  payload: { username, password },
+  payload: { username, password, rememberMe },
 }: PayloadAction<SignInInput>): Generator<
   CallEffect | PutEffect,
   void,
-  UserData
+  UserLoginResponse
 > {
   try {
-    const userData = yield call(login, { username, password });
+    const { accessToken, refreshToken, ...userData } = yield call(login, {
+      username,
+      password,
+    });
+
+    if (rememberMe) {
+      yield call(setLocalStorageItem, 'token', {
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      });
+    } else {
+      yield call(setSessionStorageItem, 'token', {
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      });
+    }
 
     yield put(signInSuccess(userData));
   } catch (error) {

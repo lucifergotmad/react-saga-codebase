@@ -19,8 +19,8 @@ export type SignInInput = {
 } & PasswordType;
 
 const INITIAL_VALUES: SignInInput = {
-  username: 'admin',
-  password: 'B1n4ry1010&',
+  username: 'lucifergotmad',
+  password: 'Binary1010&',
   rememberMe: false,
 };
 

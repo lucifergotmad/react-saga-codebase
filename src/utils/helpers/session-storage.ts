@@ -1,6 +1,6 @@
 import { doDecrypt, doEncrypt } from './encryptor';
 
-export const getLocalStorageItem = <T>(name: string, defaultValue: T): T => {
+export const getSessionStorageItem = <T>(name: string, defaultValue: T): T => {
   if (typeof window !== 'undefined') {
     try {
       const encryptedName = doEncrypt(name);
@@ -20,19 +20,19 @@ export const getLocalStorageItem = <T>(name: string, defaultValue: T): T => {
   return defaultValue;
 };
 
-export const setLocalStorageItem = <T>(name: string, data: T) => {
+export const setSessionStorageItem = <T>(name: string, data: T) => {
   if (typeof window !== 'undefined') {
     const item: IStorageItem<T> = {
       name: doEncrypt(name),
       data: doEncrypt(data),
     };
 
-    localStorage.setItem(item.name, JSON.stringify(item.data));
+    sessionStorage.setItem(item.name, JSON.stringify(item.data));
   }
 };
 
-export const removeLocalStorageItem = (name: string) => {
+export const removeSessionStorageItem = (name: string) => {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem(doEncrypt(name));
+    sessionStorage.removeItem(doEncrypt(name));
   }
 };

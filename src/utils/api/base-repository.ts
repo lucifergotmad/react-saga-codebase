@@ -1,11 +1,17 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { generateSignature } from '@utils/helpers/signature';
+import { getStorageItem } from '../helpers/storage';
 
 interface IAPIResponse<T> {
   data: T;
   message: number;
   count?: number;
 }
+
+type DataToken = {
+  accessToken: string;
+  refreshToken: string;
+};
 
 const client = axios.create({
   baseURL: import.meta.env.VITE_APP_API_URL,
@@ -14,7 +20,11 @@ const client = axios.create({
 const getConfig = (
   params?: Record<string, number | string | boolean | undefined>,
 ): AxiosRequestConfig => {
-  const accessToken = '';
+  const userData: DataToken | null = getStorageItem<DataToken>('token', {
+    accessToken: '',
+    refreshToken: '',
+  });
+  const accessToken = userData?.accessToken ?? '';
   const timestamp = new Date().toISOString();
   const signature = generateSignature(timestamp, accessToken);
 
