@@ -24,10 +24,11 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["./*"],
+      "@data/*": ["./data/*"],
       "@assets/*": ["./assets/*"],
       "@utils/*": ["./utils/*"],
       "@pages/*": ["./pages/*"],
-      "@components/*": ["./shared/components/*"]
+      "@shared/*": ["./shared/*"]
     }
   },
   "include": ["src", "./jest.setup.ts"],

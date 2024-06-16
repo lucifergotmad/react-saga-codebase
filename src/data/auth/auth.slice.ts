@@ -1,32 +1,32 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { UserData, UserState } from './user.type';
+import { UserData, AuthState } from './auth.type';
 import { SignInInput } from '@/pages/auth/sign-in';
 
-const INITAL_STATE: UserState = {
+const INITAL_STATE: AuthState = {
   currentUser: null,
   isLoading: false,
   errorMessage: null,
 };
 
-const userSlice = createSlice({
-  name: 'users',
+const authSlice = createSlice({
+  name: 'auth',
   initialState: INITAL_STATE,
   reducers: {
-    signInStart(state: UserState, _action: PayloadAction<SignInInput>) {
+    signInStart(state: AuthState, _action: PayloadAction<SignInInput>) {
       state.isLoading = true;
     },
-    signInSuccess(state: UserState, action: PayloadAction<UserData>) {
+    signInSuccess(state: AuthState, action: PayloadAction<UserData>) {
       state.currentUser = action.payload;
       state.isLoading = false;
     },
-    signInFailed(state: UserState, action: PayloadAction<string>) {
+    signInFailed(state: AuthState, action: PayloadAction<string>) {
       state.errorMessage = action.payload;
       state.isLoading = false;
     },
   },
 });
 
-const { signInStart, signInSuccess, signInFailed } = userSlice.actions;
+const { signInStart, signInSuccess, signInFailed } = authSlice.actions;
 export { signInStart, signInSuccess, signInFailed };
 
-export default userSlice.reducer;
+export default authSlice.reducer;

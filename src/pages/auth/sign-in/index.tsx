@@ -1,15 +1,16 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Card, Checkbox, TextInput } from 'flowbite-react';
-
-import { schema } from '@pages/auth/sign-in/schema';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/config/store';
 import { useSelector } from 'react-redux';
+
+import { schema } from '@pages/auth/sign-in/schema';
+import { AppDispatch } from '@/config/store';
 import { RootState } from '@/config/root-state';
-import { signInStart } from '@/data/user.slice';
 import { PasswordType } from '@/shared/types/password-type';
+import { signInStart } from '@/data/auth/auth.slice';
+
 import PasswordInput from '@/shared/components/password-input';
 
 export type SignInInput = {
@@ -25,7 +26,7 @@ const INITIAL_VALUES: SignInInput = {
 
 const SignIn = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading } = useSelector((state: RootState) => state.user);
+  const { isLoading } = useSelector((state: RootState) => state.auth);
 
   const {
     register,

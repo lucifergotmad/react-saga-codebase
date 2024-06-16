@@ -7,7 +7,7 @@ export type UserData = {
   refreshToken: string;
 };
 
-export type UserState = {
+export type AuthState = {
   currentUser: UserData | null;
   isLoading: boolean;
   errorMessage: string | null;

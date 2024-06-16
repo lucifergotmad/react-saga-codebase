@@ -1,8 +1,8 @@
 import type { FC, PropsWithChildren } from 'react';
-
-import SidebarContainer from '@components/sidebar';
-import NavbarContainer from '@components/navbar';
 import { Outlet } from 'react-router';
+
+import SidebarContainer from '@/shared/components/sidebar';
+import NavbarContainer from '@/shared/components/navbar';
 
 interface DashboardLayoutProps {
   isFooter?: boolean;

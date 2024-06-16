@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { signInFailed, signInStart, signInSuccess } from './user.slice';
+import { signInFailed, signInStart, signInSuccess } from './auth.slice';
 import {
   CallEffect,
   PutEffect,
@@ -10,7 +10,7 @@ import {
 } from 'redux-saga/effects';
 import { login } from '@/utils/api/auth/repository';
 import { SignInInput } from '@/pages/auth/sign-in';
-import { UserData } from './user.type';
+import { UserData } from './auth.type';
 
 function* signIn({
   payload: { username, password },
@@ -37,6 +37,6 @@ function* onSignInStart(): Generator {
   yield takeLatest(signInStart.type, signIn);
 }
 
-export default function* userSaga(): Generator {
+export default function* authSaga(): Generator {
   yield all([call(onSignInStart)]);
 }
