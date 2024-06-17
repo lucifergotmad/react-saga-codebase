@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { SignInInput } from '@/pages/auth/sign-in';
 import { UserData, AuthState } from './auth.type';
+import { SignUpInput } from '@/pages/auth/sign-up';
 
 const INITAL_STATE: AuthState = {
   currentUser: null,
@@ -25,13 +26,23 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
     signOutStart(state: AuthState, _action: PayloadAction) {
-      state.isLoading = false;
+      state.isLoading = true;
     },
     signOutSuccess(state: AuthState, _action: PayloadAction) {
       state.currentUser = null;
       state.isLoading = false;
     },
     signOutFailed(state: AuthState, action: PayloadAction<string>) {
+      state.errorMessage = action.payload;
+      state.isLoading = false;
+    },
+    signUpStart(state: AuthState, _action: PayloadAction<SignUpInput>) {
+      state.isLoading = true;
+    },
+    signUpSuccess(state: AuthState, _action: PayloadAction) {
+      state.isLoading = false;
+    },
+    signUpFailed(state: AuthState, action: PayloadAction<string>) {
       state.errorMessage = action.payload;
       state.isLoading = false;
     },
@@ -46,6 +57,9 @@ const {
   signOutStart,
   signOutSuccess,
   signOutFailed,
+  signUpStart,
+  signUpSuccess,
+  signUpFailed,
   isUnauthorized,
 } = authSlice.actions;
 
@@ -56,6 +70,9 @@ export {
   signOutStart,
   signOutSuccess,
   signOutFailed,
+  signUpStart,
+  signUpSuccess,
+  signUpFailed,
   isUnauthorized,
   INITAL_STATE,
 };

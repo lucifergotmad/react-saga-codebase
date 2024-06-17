@@ -5,9 +5,9 @@ import { getStorageItem } from '../helpers/storage';
 import { store } from '@/config/store';
 import { isUnauthorized } from '@/data/auth/auth.slice';
 
-interface IAPIResponse<T> {
+export interface IAPIResponse<T> {
   data: T;
-  message: number;
+  message: string;
   count?: number;
 }
 

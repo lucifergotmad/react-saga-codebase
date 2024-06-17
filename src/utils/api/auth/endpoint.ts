@@ -1,4 +1,4 @@
 export const USER_ENDPOINTS = {
-  login: 'auth/login',
-  register: 'auth/register',
+  signIn: 'auth/sign-in',
+  signUp: 'auth/sign-up',
 };

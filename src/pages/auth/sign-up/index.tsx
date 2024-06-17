@@ -7,8 +7,9 @@ import { Button, Card, TextInput } from 'flowbite-react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { schema } from './schema';
+import { signUpStart } from '@/data/auth/auth.slice';
 
 export type SignUpInput = {
   username: string;
@@ -23,7 +24,6 @@ const INITIAL_VALUES: SignUpInput = {
 
 const SignUp = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
 
   const { isLoading } = useSelector((state: RootState) => state.auth);
 
@@ -37,7 +37,7 @@ const SignUp = () => {
   });
 
   const onSubmitHandler = (data: SignUpInput) => {
-    console.log(data);
+    dispatch(signUpStart(data));
   };
 
   return (
@@ -46,7 +46,7 @@ const SignUp = () => {
         <Card className="w-full rounded-lg bg-white shadow dark:border dark:border-gray-700 dark:bg-gray-800 sm:max-w-md md:mt-0 xl:p-0">
           <div className="space-y-4 p-6 sm:p-8 md:space-y-6">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
-              Sign up
+              Create your account
             </h1>
             <form
               className="space-y-4 md:space-y-6"

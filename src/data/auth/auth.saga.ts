@@ -6,6 +6,9 @@ import {
   signOutStart,
   signOutSuccess,
   signOutFailed,
+  signUpFailed,
+  signUpSuccess,
+  signUpStart,
 } from '@data/auth/auth.slice';
 import {
   CallEffect,
@@ -16,7 +19,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects';
 
-import { login } from '@/utils/api/auth/repository';
+import { login, register } from '@/utils/api/auth/repository';
 import { SignInInput } from '@/pages/auth/sign-in';
 import {
   removeLocalStorageItem,
@@ -27,6 +30,8 @@ import {
   removeSessionStorageItem,
   setSessionStorageItem,
 } from '@/utils/helpers/session-storage';
+import { SignUpInput } from '@/pages/auth/sign-up';
+import { navigateTo } from '../navigation/navigation.slice';
 
 function* signIn({
   payload: { username, password, rememberMe },
@@ -79,6 +84,28 @@ function* signOut(): Generator {
   }
 }
 
+function* signUp({
+  payload: { username, password, confirmPassword },
+}: PayloadAction<SignUpInput>): Generator<
+  CallEffect | PutEffect,
+  void,
+  unknown
+> {
+  try {
+    yield call(register, { username, password, confirmPassword });
+
+    yield put(signUpSuccess());
+    yield put(navigateTo('/auth/sign-in'));
+  } catch (error) {
+    let errorMessage = 'An unknown error occurred';
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+
+    yield put(signUpFailed(errorMessage));
+  }
+}
+
 function* watchSignIn(): Generator {
   yield takeLatest(signInStart.type, signIn);
 }
@@ -87,6 +114,10 @@ function* watchSignOut(): Generator {
   yield takeLatest(signOutStart.type, signOut);
 }
 
+function* watchSignUp(): Generator {
+  yield takeLatest(signUpStart.type, signUp);
+}
+
 export default function* authSaga(): Generator {
-  yield all([call(watchSignIn), call(watchSignOut)]);
+  yield all([call(watchSignIn), call(watchSignOut), call(watchSignUp)]);
 }
