@@ -3,7 +3,9 @@ import {
   signInFailed,
   signInStart,
   signInSuccess,
-  signOut as signOutStart,
+  signOutStart,
+  signOutSuccess,
+  signOutFailed,
 } from '@data/auth/auth.slice';
 import {
   CallEffect,
@@ -63,10 +65,18 @@ function* signIn({
 }
 
 function* signOut(): Generator {
-  yield put(signOutStart);
+  try {
+    yield call(removeLocalStorageItem, 'token');
+    yield call(removeSessionStorageItem, 'token');
 
-  yield call(removeLocalStorageItem, 'token');
-  yield call(removeSessionStorageItem, 'token');
+    yield put(signOutSuccess());
+  } catch (error) {
+    let errorMessage = 'An unknown error occurred';
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    yield put(signOutFailed(errorMessage));
+  }
 }
 
 function* watchSignIn(): Generator {

@@ -3,7 +3,7 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { generateSignature } from '@utils/helpers/signature';
 import { getStorageItem } from '../helpers/storage';
 import { store } from '@/config/store';
-import { signOut } from '@/data/auth/auth.slice';
+import { isUnauthorized } from '@/data/auth/auth.slice';
 
 interface IAPIResponse<T> {
   data: T;
@@ -53,7 +53,7 @@ const request = async <T, R>(
     .then((response: AxiosResponse) => response.data)
     .catch((error: AxiosError) => {
       if (error.response?.status === 401) {
-        store.dispatch(signOut());
+        store.dispatch(isUnauthorized());
       }
       throw error;
     });
