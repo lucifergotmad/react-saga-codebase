@@ -11,7 +11,8 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css}\"",
     "coverage": "npm test --coverage --watchAll --collectCoverageFrom='src/components/**/*.{ts,tsx}'",
     "prepare": "husky",
-    "update-version": "node ./scripts/update-version.js"
+    "update-version": "node ./scripts/update-version.js",
+    "obfuscate": "node ./scripts/obfuscate.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
@@ -22,6 +23,7 @@
     "firebase": "^10.12.2",
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.9.0",
+    "javascript-obfuscator": "^4.1.1",
     "moment-timezone": "^0.5.45",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
