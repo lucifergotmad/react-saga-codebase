@@ -21,6 +21,8 @@ import { rootReducer } from '@/config/root-reducer';
 import { RootState } from '@/config/root-state';
 import { authTransform } from '@/data/auth/auth.transform';
 
+import unauthorizedMiddleware from '@/middlewares/unauthorize.middleware';
+
 type ExtendedPersistConfig = PersistConfig<RootState> & {
   whitelist: (keyof RootState)[];
 };
@@ -36,9 +38,10 @@ const sagaMiddleware = createSagaMiddleware();
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middlewares = [
+const middlewares: Middleware[] = [
   process.env.NODE_ENV !== 'production' && logger,
   sagaMiddleware,
+  unauthorizedMiddleware,
 ].filter((middleware): middleware is Middleware => Boolean(middleware));
 
 export const store = configureStore({

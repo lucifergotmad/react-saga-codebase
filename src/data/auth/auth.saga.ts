@@ -1,5 +1,10 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { signInFailed, signInStart, signInSuccess } from './auth.slice';
+import {
+  signInFailed,
+  signInStart,
+  signInSuccess,
+  signOut as signOutStart,
+} from '@data/auth/auth.slice';
 import {
   CallEffect,
   PutEffect,
@@ -11,9 +16,15 @@ import {
 
 import { login } from '@/utils/api/auth/repository';
 import { SignInInput } from '@/pages/auth/sign-in';
-import { setLocalStorageItem } from '@/utils/helpers/local-storage';
+import {
+  removeLocalStorageItem,
+  setLocalStorageItem,
+} from '@/utils/helpers/local-storage';
 import { UserLoginResponse } from '@/utils/api/auth/types';
-import { setSessionStorageItem } from '@/utils/helpers/session-storage';
+import {
+  removeSessionStorageItem,
+  setSessionStorageItem,
+} from '@/utils/helpers/session-storage';
 
 function* signIn({
   payload: { username, password, rememberMe },
@@ -51,10 +62,21 @@ function* signIn({
   }
 }
 
-function* onSignInStart(): Generator {
+function* signOut(): Generator {
+  yield put(signOutStart);
+
+  yield call(removeLocalStorageItem, 'token');
+  yield call(removeSessionStorageItem, 'token');
+}
+
+function* watchSignIn(): Generator {
   yield takeLatest(signInStart.type, signIn);
 }
 
+function* watchSignOut(): Generator {
+  yield takeLatest(signOutStart.type, signOut);
+}
+
 export default function* authSaga(): Generator {
-  yield all([call(onSignInStart)]);
+  yield all([call(watchSignIn), call(watchSignOut)]);
 }
