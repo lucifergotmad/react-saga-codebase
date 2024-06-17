@@ -7,7 +7,7 @@ export const schema = yup.object().shape({
     .required('Password is required!')
     .matches(
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
-      'Password must contain atleast 1 uppercase, lowercase, number, and symbols',
+      'Password must contain atleast 1 uppercase, lowercase, and number',
     ),
   rememberMe: yup.boolean().optional(),
 });

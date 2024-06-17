@@ -83,6 +83,7 @@ const SignIn = () => {
                       </>
                     )
                   }
+                  autoComplete="username"
                 />
               </div>
               <div>
@@ -93,8 +94,11 @@ const SignIn = () => {
                   Password
                 </label>
                 <PasswordInput
+                  fieldName="password"
+                  id="password"
                   passwordProps={register('password')}
                   errors={errors}
+                  autoComplete="new-password"
                 />
               </div>
               <div className="flex items-center justify-between">
