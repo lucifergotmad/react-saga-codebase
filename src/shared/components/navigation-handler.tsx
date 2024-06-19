@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { RootState } from '@/config/root-state';
-import { navigateTo } from '@/data/navigation/navigation.slice';
+import { navigateTo } from '@/data/routes/navigation.slice';
 
 const NavigationHandler: FC = () => {
   const navigate = useNavigate();

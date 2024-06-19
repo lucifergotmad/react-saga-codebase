@@ -9,7 +9,7 @@ type PrivateRoutesProps = {
 };
 
 export const PrivateRoutes = ({ children }: PrivateRoutesProps) => {
-  const isLogin = useSelector((state: RootState) => state.auth.currentUser);
+  const isLogin = true;
 
   if (!isLogin) {
     return <Navigate to="/auth/sign-in" replace={true} />;

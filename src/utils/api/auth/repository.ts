@@ -1,13 +1,11 @@
 import request from '@utils/api/base-repository';
-import { SignInInput } from '@/pages/auth/sign-in';
 
 import { USER_ENDPOINTS } from './endpoint';
 import { UserLoginResponse } from './types';
-import { SignUpInput } from '@/pages/auth/sign-up';
 
-export const login = async (data: SignInInput): Promise<UserLoginResponse> => {
+export const login = async (data: any): Promise<UserLoginResponse> => {
   try {
-    const response = await request<SignInInput, UserLoginResponse>({
+    const response = await request<any, UserLoginResponse>({
       url: USER_ENDPOINTS.signIn,
       method: 'POST',
       data,
@@ -20,9 +18,9 @@ export const login = async (data: SignInInput): Promise<UserLoginResponse> => {
   }
 };
 
-export const register = async (data: SignUpInput): Promise<string> => {
+export const register = async (data: any): Promise<string> => {
   try {
-    const response = await request<SignUpInput, string>({
+    const response = await request<any, string>({
       url: USER_ENDPOINTS.signUp,
       method: 'POST',
       data,

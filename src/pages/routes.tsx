@@ -1,10 +1,6 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 
-import Home from '@pages/home';
-import SignIn from '@pages/auth/sign-in';
-import SignUp from '@pages/auth/sign-up';
 import AdminDashboard from '@pages/admin';
-import DashboardLayout from '@/shared/layouts/dashboard';
 import NotFound from '@/shared/pages/not-found';
 import NavigationHandler from '@/shared/components/navigation-handler';
 
@@ -15,26 +11,19 @@ const routes = createBrowserRouter([
     path: '/',
     element: <NavigationHandler />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, loader: async () => redirect('/admin') },
       {
         path: 'admin',
         element: (
           <PrivateRoutes>
-            <DashboardLayout isFooter={false} />
+            <AdminDashboard />
           </PrivateRoutes>
         ),
-        children: [
-          { index: true, element: <AdminDashboard /> },
-          { path: '*', element: <NotFound /> },
-        ],
+        children: [{ path: '*', element: <NotFound /> }],
       },
       {
         path: 'auth',
-        children: [
-          { index: true, loader: async () => redirect('/auth/sign-in') },
-          { path: 'sign-in', element: <SignIn /> },
-          { path: 'sign-up', element: <SignUp /> },
-        ],
+        children: [{ index: true, loader: async () => redirect('/') }],
       },
       { path: '*', element: <NotFound /> },
     ],

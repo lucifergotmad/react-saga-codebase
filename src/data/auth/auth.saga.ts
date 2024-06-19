@@ -20,7 +20,6 @@ import {
 } from 'redux-saga/effects';
 
 import { login, register } from '@/utils/api/auth/repository';
-import { SignInInput } from '@/pages/auth/sign-in';
 import {
   removeLocalStorageItem,
   setLocalStorageItem,
@@ -31,7 +30,8 @@ import {
   setSessionStorageItem,
 } from '@/utils/helpers/session-storage';
 import { SignUpInput } from '@/pages/auth/sign-up';
-import { navigateTo } from '../navigation/navigation.slice';
+import { navigateTo } from '../routes/navigation.slice';
+import { SignInInput } from '@/pages/auth/sign-in/components/auth-form';
 
 function* signIn({
   payload: { username, password, rememberMe },

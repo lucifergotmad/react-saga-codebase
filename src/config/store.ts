@@ -30,7 +30,7 @@ type ExtendedPersistConfig = PersistConfig<RootState> & {
 export const persistConfig: ExtendedPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'theme'],
   transforms: [authTransform],
 };
 
