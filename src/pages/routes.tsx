@@ -1,10 +1,11 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 
 import AdminDashboard from '@pages/admin';
-import NotFound from '@/shared/pages/not-found';
 import NavigationHandler from '@/shared/components/routes/navigation-handler';
 
 import { PrivateRoutes } from './private-routes';
+import { NotFound } from '@/shared/pages/not-found';
+import { AppShell } from '@/shared/layouts/app-shell';
 
 const routes = createBrowserRouter([
   {
@@ -16,10 +17,13 @@ const routes = createBrowserRouter([
         path: 'admin',
         element: (
           <PrivateRoutes>
-            <AdminDashboard />
+            <AppShell />
           </PrivateRoutes>
         ),
-        children: [{ path: '*', element: <NotFound /> }],
+        children: [
+          { index: true, element: <AdminDashboard /> },
+          { path: '*', element: <NotFound /> },
+        ],
       },
       {
         path: 'auth',

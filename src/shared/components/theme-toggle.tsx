@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { IconMoon, IconSun } from '@tabler/icons-react';
 
 import { Button } from '@/shared/components/design/button';
 import { useTheme } from '@/shared/hooks/themes';
@@ -20,11 +20,7 @@ export const ThemeToggle = () => {
       className="rounded-full"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
     >
-      {theme === 'light' ? (
-        <MoonIcon fontSize={32} />
-      ) : (
-        <SunIcon fontSize={32} />
-      )}
+      {theme === 'light' ? <IconMoon size={32} /> : <IconSun size={32} />}
     </Button>
   );
 };
