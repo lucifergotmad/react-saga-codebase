@@ -2,7 +2,7 @@ import { createBrowserRouter, redirect } from 'react-router-dom';
 
 import AdminDashboard from '@pages/admin';
 import NotFound from '@/shared/pages/not-found';
-import NavigationHandler from '@/shared/components/navigation-handler';
+import NavigationHandler from '@/shared/components/routes/navigation-handler';
 
 import { PrivateRoutes } from './private-routes';
 
