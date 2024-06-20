@@ -23,6 +23,9 @@ import {
   AlertDialogTrigger,
 } from '@/shared/components/design/alert-dialog';
 import { deleteUserStart } from '@/data/users/user.slice';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '@/data/auth/auth.selector';
+import { toast } from '@/shared/components/design/use-toast';
 
 interface ActionCellProps {
   row: { original: User };
@@ -30,14 +33,24 @@ interface ActionCellProps {
 
 const ActionCell: React.FC<ActionCellProps> = ({ row }) => {
   const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
   const userId = row.original._id;
+  const isCurrentUser = row?.original?.username === currentUser?.username;
 
   const handleEdit = () => {
     console.log('hi');
   };
 
   const handleDelete = () => {
-    dispatch(deleteUserStart(userId));
+    if (isCurrentUser) {
+      toast({
+        title: 'Error',
+        description: 'Cannot delete your current user!',
+        variant: 'destructive',
+      });
+    } else {
+      dispatch(deleteUserStart(userId));
+    }
   };
 
   return (
