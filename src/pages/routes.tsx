@@ -8,6 +8,7 @@ import { NotFound } from '@/shared/pages/not-found';
 import { AppShell } from '@/shared/layouts/app-shell';
 import { SignIn } from './auth/sign-in';
 import { SignUp } from './auth/sign-up';
+import { AdminUser } from './admin/user';
 
 const routes = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const routes = createBrowserRouter([
         ),
         children: [
           { index: true, element: <AdminDashboard /> },
+          { path: 'user', element: <AdminUser /> },
           { path: '*', element: <NotFound /> },
         ],
       },

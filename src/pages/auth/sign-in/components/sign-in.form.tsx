@@ -53,7 +53,7 @@ export const SignInForm = ({ className, ...props }: SignInFormProps) => {
       <div className={cn('grid gap-4', className)} {...props}>
         <Form {...formState}>
           <form onSubmit={formState.handleSubmit(onSubmitHandler)}>
-            <div className="grid gap-2">
+            <div className="my-2 grid gap-2">
               <FormField
                 control={formState.control}
                 name="username"
@@ -67,6 +67,8 @@ export const SignInForm = ({ className, ...props }: SignInFormProps) => {
                   </FormItem>
                 )}
               />
+            </div>
+            <div className="my-2 grid gap-2">
               <FormField
                 control={formState.control}
                 name="password"
@@ -83,40 +85,36 @@ export const SignInForm = ({ className, ...props }: SignInFormProps) => {
                   </FormItem>
                 )}
               />
-              <div className="my-2 flex items-center justify-start">
-                <FormField
-                  control={formState.control}
-                  name="rememberMe"
-                  render={({ field: { value, onChange } }) => (
-                    <FormItem className="flex items-center space-y-0">
-                      <FormControl>
-                        <Checkbox
-                          checked={value}
-                          onCheckedChange={onChange}
-                          aria-describedby="remember"
-                          id="remember"
-                        />
-                      </FormControl>
-                      <div className="ml-3 items-center text-sm">
-                        <FormLabel
-                          htmlFor="remember"
-                          className="text-gray-500 dark:text-gray-300"
-                        >
-                          Remember me
-                        </FormLabel>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <Button
-                type="submit"
-                className="my-2 w-full"
-                disabled={isLoading}
-              >
-                Sign in
-              </Button>
             </div>
+            <div className="my-4 flex items-center justify-start">
+              <FormField
+                control={formState.control}
+                name="rememberMe"
+                render={({ field: { value, onChange } }) => (
+                  <FormItem className="flex items-center space-y-0">
+                    <FormControl>
+                      <Checkbox
+                        checked={value}
+                        onCheckedChange={onChange}
+                        aria-describedby="remember"
+                        id="remember"
+                      />
+                    </FormControl>
+                    <div className="ml-3 items-center text-sm">
+                      <FormLabel
+                        htmlFor="remember"
+                        className="text-gray-500 dark:text-gray-300"
+                      >
+                        Remember me
+                      </FormLabel>
+                    </div>
+                  </FormItem>
+                )}
+              />
+            </div>
+            <Button type="submit" className="my-4 w-full" disabled={isLoading}>
+              Sign in
+            </Button>
           </form>
         </Form>
       </div>

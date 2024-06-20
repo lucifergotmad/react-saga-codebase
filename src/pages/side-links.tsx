@@ -1,8 +1,4 @@
-import {
-  IconApps,
-  IconLayoutDashboard,
-  IconMessages,
-} from '@tabler/icons-react';
+import { IconLayoutDashboard, IconUserCircle } from '@tabler/icons-react';
 
 export interface NavLink {
   title: string;
@@ -21,18 +17,12 @@ export const sidelinks: SideLink[] = [
     title: 'Dashboard',
     label: '',
     href: '/admin/dashboard',
-    icon: <IconLayoutDashboard size={18} />,
+    icon: <IconLayoutDashboard size={20} />,
   },
   {
-    title: 'Chats',
-    label: '9',
-    href: '/chats',
-    icon: <IconMessages size={18} />,
-  },
-  {
-    title: 'Apps',
+    title: 'User',
     label: '',
-    href: '/apps',
-    icon: <IconApps size={18} />,
+    href: '/admin/user',
+    icon: <IconUserCircle size={20} />,
   },
 ];

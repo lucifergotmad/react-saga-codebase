@@ -24,11 +24,15 @@ import { signUpStart } from '@/data/auth/auth.slice';
 interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}
 
 export type SignUpInput = {
+  fullname: string;
+  email: string;
   username: string;
   confirmPassword: string;
 } & PasswordType;
 
 const INITIAL_VALUES: SignUpInput = {
+  fullname: 'Octyo Paswa Putra',
+  email: 'lucifergotmad@developer.id',
   username: 'lucifergotmad',
   password: 'Binary1010&',
   confirmPassword: 'Binary1010&',
@@ -52,20 +56,60 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
       <div className={cn('grid gap-4', className)} {...props}>
         <Form {...formState}>
           <form onSubmit={formState.handleSubmit(onSubmitHandler)}>
-            <div className="grid gap-2">
+            <div className="my-2 grid grid-cols-2 gap-4">
+              <div className="grid gap-2">
+                <FormField
+                  control={formState.control}
+                  name="fullname"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1">
+                      <FormLabel className="text-sm">Full Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder={INITIAL_VALUES.fullname}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="grid gap-2">
+                <FormField
+                  control={formState.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1">
+                      <FormLabel className="text-sm">Username</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder={INITIAL_VALUES.username}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div className="my-2 grid gap-2">
               <FormField
                 control={formState.control}
-                name="username"
+                name="email"
                 render={({ field }) => (
                   <FormItem className="space-y-1">
-                    <FormLabel className="text-sm">Username</FormLabel>
+                    <FormLabel className="text-sm">Email</FormLabel>
                     <FormControl>
-                      <Input placeholder={INITIAL_VALUES.username} {...field} />
+                      <Input placeholder={INITIAL_VALUES.email} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+            </div>
+            <div className="my-2 grid gap-2">
               <FormField
                 control={formState.control}
                 name="password"
@@ -82,6 +126,8 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
                   </FormItem>
                 )}
               />
+            </div>
+            <div className="my-2 grid gap-2">
               <FormField
                 control={formState.control}
                 name="confirmPassword"
@@ -98,14 +144,10 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
                   </FormItem>
                 )}
               />
-              <Button
-                type="submit"
-                className="my-2 w-full"
-                disabled={isLoading}
-              >
-                Sign up
-              </Button>
             </div>
+            <Button type="submit" className="my-4 w-full" disabled={isLoading}>
+              Sign up
+            </Button>
           </form>
         </Form>
       </div>

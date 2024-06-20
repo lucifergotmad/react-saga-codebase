@@ -1,14 +1,12 @@
 import { UserLevel } from '@/shared/constants/user-level';
 
-export type UserData = {
-  fullname: string;
+export type User = {
   username: string;
-  email: string;
   level: UserLevel;
 };
 
-export type AuthState = {
-  currentUser: UserData | null;
+export type UserState = {
+  userList: User[];
   isLoading: boolean;
   errorMessage: string | null;
 };
