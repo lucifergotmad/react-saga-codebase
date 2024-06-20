@@ -14,8 +14,17 @@ import {
   DropdownMenuTrigger,
 } from '@/shared/components/design/dropdown-menu';
 import { CustomButton } from './custom/custom-button';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/config/store';
+import { signOutStart } from '@/data/auth/auth.slice';
 
 export const UserNav = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onClickHandler = () => {
+    dispatch(signOutStart());
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -52,7 +61,7 @@ export const UserNav = () => {
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={onClickHandler}>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

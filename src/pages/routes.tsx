@@ -6,6 +6,8 @@ import NavigationHandler from '@/shared/components/routes/navigation-handler';
 import { PrivateRoutes } from './private-routes';
 import { NotFound } from '@/shared/pages/not-found';
 import { AppShell } from '@/shared/layouts/app-shell';
+import { SignIn } from './auth/sign-in';
+import { SignUp } from './auth/sign-up';
 
 const routes = createBrowserRouter([
   {
@@ -27,7 +29,11 @@ const routes = createBrowserRouter([
       },
       {
         path: 'auth',
-        children: [{ index: true, loader: async () => redirect('/') }],
+        children: [
+          { index: true, loader: async () => redirect('/auth/sign-in') },
+          { path: 'sign-in', element: <SignIn /> },
+          { path: 'sign-up', element: <SignUp /> },
+        ],
       },
       { path: '*', element: <NotFound /> },
     ],

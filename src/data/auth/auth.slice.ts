@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { SignInInput } from '@/pages/auth/sign-in';
 import { UserData, AuthState } from './auth.type';
-import { SignUpInput } from '@/pages/auth/sign-up';
+import { SignInInput } from '@/pages/auth/sign-in/components/sign-in.form';
+import { SignUpInput } from '@/pages/auth/sign-up/components/sign-up.form';
 
 const INITAL_STATE: AuthState = {
   currentUser: null,

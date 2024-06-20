@@ -20,7 +20,7 @@ export const ThemeToggle = () => {
       className="rounded-full"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
     >
-      {theme === 'light' ? <IconMoon size={32} /> : <IconSun size={32} />}
+      {theme === 'light' ? <IconMoon size={24} /> : <IconSun size={24} />}
     </Button>
   );
 };

@@ -27,22 +27,10 @@ export const Sidebar = ({
     }
   }, [navOpened]);
 
-  // console.log(
-  //   `md:bottom-0 md:right-auto md:h-svh fixed left-0 right-0 top-0 z-50 w-full border-r-2 border-r-muted transition-[width] ${
-  //     isCollapsed ? 'md:w-14' : 'md:w-64'
-  //   }`,
-  // );
-
-  console.log(
-    `h-full flex-1 overflow-auto ${
-      navOpened ? 'max-h-screen' : 'md:max-h-screen md:py-2 max-h-0 py-0'
-    }`,
-  );
-
   return (
     <aside
       className={cn(
-        `md:bottom-0 md:right-auto md:h-svh fixed left-0 right-0 top-0 z-50 w-full border-r-2 border-r-muted transition-[width] ${
+        `fixed left-0 right-0 top-0 z-50 w-full border-r-2 border-r-muted transition-[width] md:bottom-0 md:right-auto md:h-svh ${
           isCollapsed ? 'md:w-14' : 'md:w-64'
         }`,
         className,
@@ -53,12 +41,12 @@ export const Sidebar = ({
         onClick={() => setNavOpened(false)}
         className={`absolute inset-0 transition-[opacity] delay-100 duration-700 ${
           navOpened ? 'h-svh opacity-50' : 'h-0 opacity-0'
-        } md:hidden w-full bg-black`}
+        } w-full bg-black md:hidden`}
       />
 
       <Layout>
         {/* Header */}
-        <LayoutHeader className="md:px-4 sticky top-0 justify-between px-4 py-3 shadow">
+        <LayoutHeader className="sticky top-0 justify-between px-4 py-3 shadow md:px-4">
           <div className={`flex items-center ${!isCollapsed ? 'gap-2' : ''}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +107,7 @@ export const Sidebar = ({
         <SideNav
           id="sidebar-menu"
           className={`h-full flex-1 overflow-auto ${
-            navOpened ? 'max-h-screen' : 'md:max-h-screen md:py-2 max-h-0 py-0'
+            navOpened ? 'max-h-screen' : 'max-h-0 py-0 md:max-h-screen md:py-2'
           }`}
           closeNav={() => setNavOpened(false)}
           isCollapsed={isCollapsed}
@@ -131,7 +119,7 @@ export const Sidebar = ({
           onClick={() => setIsCollapsed((prev) => !prev)}
           size="icon"
           variant="outline"
-          className="md:inline-flex absolute -right-5 top-1/2 hidden rounded-full"
+          className="absolute -right-5 top-1/2 hidden rounded-full md:inline-flex"
         >
           <IconChevronsLeft
             stroke={1.5}

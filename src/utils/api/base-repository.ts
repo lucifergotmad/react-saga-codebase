@@ -5,6 +5,10 @@ import { getStorageItem } from '../helpers/storage';
 import { store } from '@/config/store';
 import { isUnauthorized } from '@/data/auth/auth.slice';
 
+interface IErrorResponse {
+  message: string;
+}
+
 export interface IAPIResponse<T> {
   data: T;
   message: string;
@@ -51,11 +55,16 @@ const request = async <T, R>(
 
   return client({ ...options, ...config })
     .then((response: AxiosResponse) => response.data)
-    .catch((error: AxiosError) => {
+    .catch((error: AxiosError<IErrorResponse>) => {
       if (error.response?.status === 401) {
         store.dispatch(isUnauthorized());
       }
-      throw error;
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        'An unknown error occurred';
+
+      throw new Error(errorMessage);
     });
 };
 

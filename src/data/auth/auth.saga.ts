@@ -29,13 +29,13 @@ import {
   removeSessionStorageItem,
   setSessionStorageItem,
 } from '@/utils/helpers/session-storage';
-// import { SignUpInput } from '@/pages/auth/sign-up';
 import { navigateTo } from '../routes/navigation.slice';
-// import { SignInInput } from '@/pages/auth/sign-in/components/auth-form';
+import { SignInInput } from '@/pages/auth/sign-in/components/sign-in.form';
+import { SignUpInput } from '@/pages/auth/sign-up/components/sign-up.form';
 
 function* signIn({
   payload: { username, password, rememberMe },
-}: PayloadAction<any>): Generator<
+}: PayloadAction<SignInInput>): Generator<
   CallEffect | PutEffect,
   void,
   UserLoginResponse
@@ -86,7 +86,11 @@ function* signOut(): Generator {
 
 function* signUp({
   payload: { username, password, confirmPassword },
-}: PayloadAction<any>): Generator<CallEffect | PutEffect, void, unknown> {
+}: PayloadAction<SignUpInput>): Generator<
+  CallEffect | PutEffect,
+  void,
+  unknown
+> {
   try {
     yield call(register, { username, password, confirmPassword });
 
