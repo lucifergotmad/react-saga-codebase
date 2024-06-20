@@ -15,13 +15,11 @@ export interface SideLink extends NavLink {
 export const sidelinks: SideLink[] = [
   {
     title: 'Dashboard',
-    label: '',
     href: '/admin/dashboard',
     icon: <IconLayoutDashboard size={20} />,
   },
   {
     title: 'User',
-    label: '',
     href: '/admin/user',
     icon: <IconUserCircle size={20} />,
   },

@@ -1,6 +1,7 @@
-export enum UserLevel {
-  ADMIN = 'ADMIN',
-  OWNER = 'OWNER',
-  SUPERVISOR = 'SUPERVISOR',
-  SU = 'SU',
-}
+export type UserLevel = 'ADMIN' | 'OWNER' | 'SU' | 'SUPERVISOR';
+export const UserLevelList: UserLevel[] = [
+  'ADMIN',
+  'OWNER',
+  'SU',
+  'SUPERVISOR',
+];
