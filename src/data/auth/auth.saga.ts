@@ -99,14 +99,20 @@ function* signOut(): Generator {
 }
 
 function* signUp({
-  payload: { username, password, confirmPassword },
+  payload: { username, password, confirmPassword, email, fullname },
 }: PayloadAction<SignUpInput>): Generator<
   CallEffect | PutEffect,
   void,
   unknown
 > {
   try {
-    yield call(register, { username, password, confirmPassword });
+    yield call(register, {
+      username,
+      password,
+      confirmPassword,
+      email,
+      fullname,
+    });
 
     yield put(signUpSuccess());
     yield put(navigateTo('/auth/sign-in'));
