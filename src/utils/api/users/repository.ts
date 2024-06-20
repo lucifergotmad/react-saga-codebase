@@ -36,3 +36,17 @@ export const saveUser = async (data: UserAddInput): Promise<IdType> => {
     throw error;
   }
 };
+
+export const removeUser = async (_id: string): Promise<string> => {
+  try {
+    const response = await request<unknown, unknown>({
+      url: `${USER_ENDPOINTS.addUser}/${_id}`,
+      method: 'DELETE',
+    });
+
+    return response.message;
+  } catch (error) {
+    console.error('API request failed:', error);
+    throw error;
+  }
+};
