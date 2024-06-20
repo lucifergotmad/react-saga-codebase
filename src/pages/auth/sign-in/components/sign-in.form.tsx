@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { schema } from '../schema';
-import { HTMLAttributes, useEffect } from 'react';
+import { HTMLAttributes } from 'react';
 import { cn } from '@/utils/design/classname';
 import {
   Form,
@@ -21,7 +21,6 @@ import { Input } from '@/shared/components/design/input';
 import { Button } from '@/shared/components/design/button';
 import { PasswordInput } from '@/shared/components/custom/password-input';
 import { Checkbox } from '@/shared/components/design/checkbox';
-import { toast } from '@/shared/components/design/use-toast';
 
 interface SignInFormProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -38,9 +37,7 @@ const INITIAL_VALUES: SignInInput = {
 
 export const SignInForm = ({ className, ...props }: SignInFormProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, errorMessage } = useSelector(
-    (state: RootState) => state.auth,
-  );
+  const { isLoading } = useSelector((state: RootState) => state.auth);
 
   const formState = useForm<SignInInput>({
     defaultValues: INITIAL_VALUES,
@@ -50,16 +47,6 @@ export const SignInForm = ({ className, ...props }: SignInFormProps) => {
   const onSubmitHandler = (data: SignInInput) => {
     dispatch(signInStart(data));
   };
-
-  useEffect(() => {
-    if (errorMessage) {
-      toast({
-        title: 'Error',
-        description: errorMessage,
-        variant: 'destructive',
-      });
-    }
-  }, [errorMessage]);
 
   return (
     <>

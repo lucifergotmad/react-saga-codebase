@@ -32,6 +32,7 @@ import {
 import { navigateTo } from '../routes/navigation.slice';
 import { SignInInput } from '@/pages/auth/sign-in/components/sign-in.form';
 import { SignUpInput } from '@/pages/auth/sign-up/components/sign-up.form';
+import { toast } from '@/shared/components/design/use-toast';
 
 function* signIn({
   payload: { username, password, rememberMe },
@@ -65,6 +66,12 @@ function* signIn({
       errorMessage = error.message;
     }
 
+    toast({
+      title: 'Error',
+      description: errorMessage,
+      variant: 'destructive',
+    });
+
     yield put(signInFailed(errorMessage));
   }
 }
@@ -80,6 +87,13 @@ function* signOut(): Generator {
     if (error instanceof Error) {
       errorMessage = error.message;
     }
+
+    toast({
+      title: 'Error',
+      description: errorMessage,
+      variant: 'destructive',
+    });
+
     yield put(signOutFailed(errorMessage));
   }
 }
@@ -101,6 +115,12 @@ function* signUp({
     if (error instanceof Error) {
       errorMessage = error.message;
     }
+
+    toast({
+      title: 'Error',
+      description: errorMessage,
+      variant: 'destructive',
+    });
 
     yield put(signUpFailed(errorMessage));
   }

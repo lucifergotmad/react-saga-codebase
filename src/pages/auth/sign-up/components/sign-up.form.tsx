@@ -2,7 +2,7 @@ import { RootState } from '@/config/root-state';
 import { AppDispatch } from '@/config/store';
 import { PasswordType } from '@/shared/types/password-type';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { HTMLAttributes, useEffect } from 'react';
+import { HTMLAttributes } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -20,7 +20,6 @@ import { Input } from '@/shared/components/design/input';
 import { PasswordInput } from '@/shared/components/custom/password-input';
 import { Button } from '@/shared/components/design/button';
 import { signUpStart } from '@/data/auth/auth.slice';
-import { toast } from '@/shared/components/design/use-toast';
 
 interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -37,9 +36,7 @@ const INITIAL_VALUES: SignUpInput = {
 
 export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, errorMessage } = useSelector(
-    (state: RootState) => state.auth,
-  );
+  const { isLoading } = useSelector((state: RootState) => state.auth);
 
   const formState = useForm<SignUpInput>({
     defaultValues: INITIAL_VALUES,
@@ -49,16 +46,6 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
   const onSubmitHandler = (data: SignUpInput) => {
     dispatch(signUpStart(data));
   };
-
-  useEffect(() => {
-    if (errorMessage) {
-      toast({
-        title: 'Error',
-        description: errorMessage,
-        variant: 'destructive',
-      });
-    }
-  }, [errorMessage]);
 
   return (
     <>
