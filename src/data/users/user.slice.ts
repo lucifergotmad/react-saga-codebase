@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { User, UserState } from './user.type';
+import { UserList, UserState } from './user.type';
 
 const INITIAL_STATE: UserState = {
   userList: [],
@@ -14,7 +14,7 @@ const userSlice = createSlice({
     getUserStart(state: UserState, _action: PayloadAction) {
       state.isLoading = true;
     },
-    getUserSuccess(state: UserState, action: PayloadAction<User[]>) {
+    getUserSuccess(state: UserState, action: PayloadAction<UserList[]>) {
       state.userList = action.payload;
       state.isLoading = false;
     },
@@ -22,10 +22,11 @@ const userSlice = createSlice({
       state.errorMessage = action.payload;
       state.isLoading = false;
     },
-    addUserStart(state: UserState, _action: PayloadAction) {
-      state.isLoading = true;
-    },
   },
 });
+
+const { getUserStart, getUserSuccess, getUserFailed } = userSlice.actions;
+
+export { getUserStart, getUserSuccess, getUserFailed };
 
 export default userSlice.reducer;

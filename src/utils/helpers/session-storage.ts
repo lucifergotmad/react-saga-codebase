@@ -1,30 +1,25 @@
-import { doDecrypt, doEncrypt } from './encryptor';
-
-export const getSessionStorageItem = <T>(name: string, defaultValue: T): T => {
+export const getSessionStorageItem = <T>(name: string): T | null => {
   if (typeof window !== 'undefined') {
     try {
-      const encryptedName = doEncrypt(name);
-      const item = localStorage.getItem(encryptedName);
-
+      const item = sessionStorage.getItem(name);
       if (item !== null) {
-        const decryptedData = doDecrypt(JSON.parse(item));
-        return decryptedData as T;
+        return JSON.parse(item) as T;
       } else {
-        return defaultValue;
+        return null;
       }
     } catch (error) {
-      console.error('Error retrieving item from localStorage:', error);
-      return defaultValue;
+      console.error('Error retrieving item from sessionStorage:', error);
+      return null;
     }
   }
-  return defaultValue;
+  return null;
 };
 
 export const setSessionStorageItem = <T>(name: string, data: T) => {
   if (typeof window !== 'undefined') {
     const item: IStorageItem<T> = {
-      name: doEncrypt(name),
-      data: doEncrypt(data),
+      name,
+      data,
     };
 
     sessionStorage.setItem(item.name, JSON.stringify(item.data));
@@ -33,6 +28,6 @@ export const setSessionStorageItem = <T>(name: string, data: T) => {
 
 export const removeSessionStorageItem = (name: string) => {
   if (typeof window !== 'undefined') {
-    sessionStorage.removeItem(doEncrypt(name));
+    sessionStorage.removeItem(name);
   }
 };

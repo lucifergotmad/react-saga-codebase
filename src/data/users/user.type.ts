@@ -1,12 +1,10 @@
-import { UserLevel } from '@/shared/constants/user-level';
+import { UserData } from '@/data/auth/auth.type';
+import { IdType } from '@/shared/types/_id.type';
 
-export type User = {
-  username: string;
-  level: UserLevel;
-};
+export type UserList = UserData & IdType;
 
 export type UserState = {
-  userList: User[];
+  userList: UserList[];
   isLoading: boolean;
   errorMessage: string | null;
 };

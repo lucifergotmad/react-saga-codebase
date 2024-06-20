@@ -1,5 +1,3 @@
-'use client';
-
 import {
   ColumnDef,
   flexRender,
@@ -29,6 +27,11 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    initialState: {
+      columnVisibility: {
+        _id: false,
+      },
+    },
   });
 
   return (
