@@ -25,7 +25,7 @@ export const AdminUser = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col sm:gap-4 sm:py-16 sm:pl-14">
+    <div className="flex flex-col sm:gap-4 sm:py-8 sm:pl-8">
       <div className="grid flex-1 items-start gap-2 p-2 sm:px-6 sm:py-0 md:gap-4">
         <div className="ml-auto flex items-center gap-2">
           <UserAddForm />
