@@ -9,23 +9,20 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/shared/components/design/alert-dialog';
-import { DropdownMenuItem } from '@/shared/components/design/dropdown-menu';
-import { HTMLAttributes } from 'react';
+import { Button } from '@/shared/components/design/button';
+import { TrashIcon } from '@radix-ui/react-icons';
 
 type UserDeleteFormProps = {
   onDeleteHandler: () => void;
-} & HTMLAttributes<HTMLDialogElement>;
+};
 
-export const UserDeleteForm = ({
-  onDeleteHandler,
-  ...props
-}: UserDeleteFormProps) => {
+export const UserDeleteForm = ({ onDeleteHandler }: UserDeleteFormProps) => {
   return (
-    <AlertDialog {...props}>
+    <AlertDialog>
       <AlertDialogTrigger>
-        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          Delete item
-        </DropdownMenuItem>
+        <Button variant={'ghost'}>
+          <TrashIcon />
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

@@ -17,3 +17,12 @@ export const userAddSchema = yup.object().shape({
     ),
   level: yup.string().optional().oneOf(UserLevelList, 'Level is invalid!'),
 });
+
+export const userEditSchema = yup.object().shape({
+  fullname: yup
+    .string()
+    .max(50, 'Length must be lest than 50 characters')
+    .required('Fullname is required!'),
+  email: yup.string().email('Email is invalid!').required('Email is required!'),
+  level: yup.string().optional().oneOf(UserLevelList, 'Level is invalid!'),
+});

@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { UserList, UserState } from './user.type';
 import { UserAddInput } from '@/pages/admin/user/components/user-add.form';
+import { UserEditInput } from '@/pages/admin/user/components/user-edit.form';
+import { IdType } from '@/shared/types/_id.type';
 
 const INITIAL_STATE: UserState = {
   userList: [],
@@ -33,6 +35,19 @@ const userSlice = createSlice({
       state.errorMessage = action.payload;
       state.isLoading = false;
     },
+    editUserStart(
+      state: UserState,
+      _action: PayloadAction<UserEditInput & IdType>,
+    ) {
+      state.isLoading = true;
+    },
+    editUserSuccess(state: UserState, _action: PayloadAction) {
+      state.isLoading = false;
+    },
+    editUserFailed(state: UserState, action: PayloadAction<string>) {
+      state.errorMessage = action.payload;
+      state.isLoading = false;
+    },
     deleteUserStart(state: UserState, _action: PayloadAction<string>) {
       state.isLoading = true;
     },
@@ -59,6 +74,9 @@ const {
   deleteUserStart,
   deleteUserSuccess,
   deleteUserFailed,
+  editUserStart,
+  editUserSuccess,
+  editUserFailed,
 } = userSlice.actions;
 
 export {
@@ -71,6 +89,9 @@ export {
   deleteUserStart,
   deleteUserSuccess,
   deleteUserFailed,
+  editUserStart,
+  editUserSuccess,
+  editUserFailed,
 };
 
 export default userSlice.reducer;

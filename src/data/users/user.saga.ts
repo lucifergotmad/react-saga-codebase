@@ -16,13 +16,23 @@ import {
   deleteUserFailed,
   deleteUserStart,
   deleteUserSuccess,
+  editUserFailed,
+  editUserStart,
+  editUserSuccess,
   getUserFailed,
   getUserStart,
   getUserSuccess,
 } from './user.slice';
-import { findUsers, removeUser, saveUser } from '@/utils/api/users/repository';
+import {
+  findUsers,
+  removeUser,
+  saveUser,
+  updateUser,
+} from '@/utils/api/users/repository';
 import { UserList } from './user.type';
 import { UserAddInput } from '@/pages/admin/user/components/user-add.form';
+import { UserEditInput } from '@/pages/admin/user/components/user-edit.form';
+import { IdType } from '@/shared/types/_id.type';
 
 function* getUser({
   payload,
@@ -58,7 +68,14 @@ function* addUser({
   string
 > {
   try {
-    yield call(saveUser, payload);
+    const message = yield call(saveUser, payload);
+
+    toast({
+      title: 'Success',
+      description: message,
+      variant: 'default',
+    });
+
     yield put(addUserSuccess());
     yield put(getUserStart());
   } catch (error) {
@@ -74,6 +91,40 @@ function* addUser({
     });
 
     yield put(addUserFailed(errorMessage));
+  }
+}
+
+function* editUser({
+  payload,
+}: PayloadAction<UserEditInput & IdType>): Generator<
+  CallEffect | PutEffect,
+  void,
+  string
+> {
+  try {
+    const message = yield call(updateUser, payload);
+
+    toast({
+      title: 'Success',
+      description: message,
+      variant: 'default',
+    });
+
+    yield put(editUserSuccess());
+    yield put(getUserStart());
+  } catch (error) {
+    let errorMessage = 'An unknown error occurred';
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+
+    toast({
+      title: 'Error',
+      description: errorMessage,
+      variant: 'destructive',
+    });
+
+    yield put(editUserFailed(errorMessage));
   }
 }
 
@@ -115,10 +166,19 @@ function* watchAddUser(): Generator {
   yield takeLatest(addUserStart.type, addUser);
 }
 
+function* watchEditUser(): Generator {
+  yield takeLatest(editUserStart.type, editUser);
+}
+
 function* watchDeleteUser(): Generator {
   yield takeLatest(deleteUserStart.type, deleteUser);
 }
 
 export default function* userSaga(): Generator {
-  yield all([call(watchGetUser), call(watchAddUser), call(watchDeleteUser)]);
+  yield all([
+    call(watchGetUser),
+    call(watchAddUser),
+    call(watchDeleteUser),
+    call(watchEditUser),
+  ]);
 }

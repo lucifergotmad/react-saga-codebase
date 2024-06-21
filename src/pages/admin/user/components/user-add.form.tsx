@@ -98,9 +98,7 @@ export const UserAddForm = ({ className, ...props }: UserAddFormProps) => {
         </DialogTrigger>
         <DialogContent
           className="sm:max-w-[425px]"
-          onInteractOutside={(e) => {
-            e.preventDefault();
-          }}
+          onInteractOutside={(e) => e.preventDefault()}
         >
           <DialogHeader>
             <DialogTitle>Add User</DialogTitle>
