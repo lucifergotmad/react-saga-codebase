@@ -15,7 +15,7 @@ export interface SideLink extends NavLink {
 export const sidelinks: SideLink[] = [
   {
     title: 'Dashboard',
-    href: '/admin',
+    href: '/admin/dashboard',
     icon: <IconLayoutDashboard size={20} />,
   },
   {

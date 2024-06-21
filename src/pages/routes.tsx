@@ -24,7 +24,7 @@ const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         children: [
-          { index: true, element: <AdminDashboard /> },
+          { path: 'dashboard', element: <AdminDashboard /> },
           { path: 'user', element: <AdminUser /> },
           { path: '*', element: <NotFound /> },
         ],

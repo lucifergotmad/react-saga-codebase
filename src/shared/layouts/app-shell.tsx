@@ -18,7 +18,7 @@ export const AppShell = () => {
         id="content"
         className={cn(
           isCollapsed ? 'md:ml-14' : 'md:ml-64',
-          'md:overflow-y-hidden md:pt-0 h-full overflow-x-hidden pt-16 transition-[margin]',
+          'h-full overflow-x-hidden pt-16 transition-[margin] md:overflow-y-hidden md:pt-0',
         )}
       >
         <Layout>
