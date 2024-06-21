@@ -82,7 +82,6 @@ function* deleteUser({
 }: PayloadAction<string>): Generator<CallEffect | PutEffect, void, string> {
   try {
     const message = yield call(removeUser, payload);
-    yield put(deleteUserSuccess(payload));
 
     toast({
       title: 'Success',
@@ -90,6 +89,7 @@ function* deleteUser({
       variant: 'default',
     });
 
+    yield put(deleteUserSuccess(payload));
     yield put(getUserStart());
   } catch (error) {
     let errorMessage = 'An unknown error occurred';

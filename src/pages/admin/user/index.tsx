@@ -34,7 +34,7 @@ export const AdminUser = () => {
           <CardHeader>
             <CardTitle className="text-lg">Users</CardTitle>
             <CardDescription>
-              Manage your products and view their sales performance.
+              Manage your users and view their details.
             </CardDescription>
           </CardHeader>
           <CardContent>

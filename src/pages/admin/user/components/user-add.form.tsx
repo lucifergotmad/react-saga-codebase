@@ -69,11 +69,13 @@ export const UserAddForm = ({ className, ...props }: UserAddFormProps) => {
 
   const onSubmitHandler = (data: UserAddInput) => {
     dispatch(addUserStart(data));
+    formState.reset();
     setIsOpen(false);
   };
 
   const onCloseHandler = () => {
     formState.reset();
+    setIsOpen(false);
   };
 
   const onClickHandler = () => {
