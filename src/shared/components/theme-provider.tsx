@@ -1,17 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 
-type Theme = 'dark' | 'light' | 'system';
-
-type ThemeProviderProps = {
-  children: React.ReactNode;
-  defaultTheme?: Theme;
-  storageKey?: string;
-};
-
-type ThemeProviderState = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-};
+import { Theme, ThemeProviderProps, ThemeProviderState } from '@/shared';
 
 const initialState: ThemeProviderState = {
   theme: 'system',

@@ -1,4 +1,6 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export type UseIsCollapsedReturnType = [
   boolean,
-  React.Dispatch<React.SetStateAction<boolean>>,
+  Dispatch<SetStateAction<boolean>>,
 ];

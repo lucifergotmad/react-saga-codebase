@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { IconChevronDown } from '@tabler/icons-react';
+
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from './design/collapsible';
+} from '@/shared/components/design/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,18 +13,17 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './design/dropdown-menu';
+} from '@/shared/components/design/dropdown-menu';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from './design/tooltip';
-import { SideLink } from '@/pages/side-links';
-import { cn } from '@/utils/design/classname';
-import { useCheckActiveUrl } from '../hooks/navigations';
-import { buttonVariants } from './design/types/button-variants';
-import { CustomButton } from './custom/custom-button';
+} from '@/shared/components/design/tooltip';
+import { Button } from '@/shared/components/design/button';
+import { buttonVariants } from '@/shared/components/design/types';
+import { useCheckActiveUrl, SideLink } from '@/shared';
+import { cn } from '@/utils';
 
 interface SideNavProps extends React.HTMLAttributes<HTMLDivElement> {
   isCollapsed: boolean;
@@ -64,12 +64,12 @@ export const SideNav = ({
     <div
       data-collapsed={isCollapsed}
       className={cn(
-        'data-[collapsed=true]:py-2 md:border-none group border-b bg-background py-2 transition-[max-height,padding] duration-500',
+        'group border-b bg-background py-2 transition-[max-height,padding] duration-500 data-[collapsed=true]:py-2 md:border-none',
         className,
       )}
     >
       <TooltipProvider delayDuration={0}>
-        <nav className="group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2 grid gap-1">
+        <nav className="grid gap-1 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
           {links.map(renderLink)}
         </nav>
       </TooltipProvider>
@@ -147,7 +147,7 @@ function NavLinkDropdown({
         )}
         <span
           className={cn(
-            'group-data-[state="open"]:-rotate-180 ml-auto transition-all',
+            'ml-auto transition-all group-data-[state="open"]:-rotate-180',
           )}
         >
           <IconChevronDown stroke={1} />
@@ -215,13 +215,13 @@ function NavLinkIconDropdown({ title, icon, label, sub }: NavLinkProps) {
       <Tooltip delayDuration={0}>
         <TooltipTrigger asChild>
           <DropdownMenuTrigger asChild>
-            <CustomButton
+            <Button
               variant={isChildActive ? 'secondary' : 'ghost'}
               size="icon"
               className="h-12 w-12"
             >
               {icon}
-            </CustomButton>
+            </Button>
           </DropdownMenuTrigger>
         </TooltipTrigger>
         <TooltipContent side="right" className="flex items-center gap-4">
