@@ -24,4 +24,4 @@ const NavigationHandler: FC = () => {
   );
 };
 
-export default NavigationHandler;
+export { NavigationHandler };

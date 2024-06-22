@@ -18,12 +18,13 @@ import { ExtendedPersistConfig } from '@/app/type';
 import { rootReducer } from '@/app/root-reducer';
 import { rootSaga } from '@/app/root-saga';
 import { unauthorizedMiddleware } from '@/app/middlewares';
+import { authTransform } from '@/modules/auth';
 
 const persistConfig: ExtendedPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['theme'],
-  transforms: [],
+  whitelist: ['theme', 'auth'],
+  transforms: [authTransform],
 };
 
 const sagaMiddleware = createSagaMiddleware();
