@@ -1,4 +1,4 @@
-import { UserEndPointType } from './type';
+import { UserEndPointType } from '@/modules/admin/users';
 
 export const USER_ENDPOINTS: UserEndPointType = {
   getUser: {

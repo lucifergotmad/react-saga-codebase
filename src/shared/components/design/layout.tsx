@@ -1,5 +1,6 @@
-import { cn } from '@/utils/design/classname';
 import * as React from 'react';
+
+import { cn } from '@/utils';
 
 interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   fadedBelow?: boolean;
@@ -30,7 +31,7 @@ const LayoutHeader = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      'md:px-8 flex h-[var(--header-height)] flex-none items-center gap-4 bg-background p-4 shadow',
+      'flex h-[var(--header-height)] flex-none items-center gap-4 bg-background p-4 shadow md:px-8',
       className,
     )}
     {...props}
@@ -47,7 +48,7 @@ const LayoutBody = React.forwardRef<HTMLDivElement, LayoutBodyProps>(
     <div
       ref={ref}
       className={cn(
-        'tw=py-6 md:px-8 flex-1 overflow-hidden px-4',
+        'tw=py-6 flex-1 overflow-hidden px-4 md:px-8',
         fixedHeight && 'h-[calc(100%-var(--header-height))]',
         className,
       )}

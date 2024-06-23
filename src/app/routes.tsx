@@ -20,6 +20,7 @@ const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         children: [
+          { index: true, loader: async () => redirect('/admin/dashboard') },
           { path: 'dashboard', element: <AdminDashboard /> },
           { path: 'user', element: <AdminUser /> },
           { path: '*', element: <NotFound /> },

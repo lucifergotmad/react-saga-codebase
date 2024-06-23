@@ -14,11 +14,10 @@ import {
 } from '@/shared/components/design/form';
 import { Input } from '@/shared/components/design/input';
 import { Button } from '@/shared/components/design/button';
-import { SignUpInput, signUpSchema } from '@/modules/auth/schemas';
+import { SignUpInput, signUpSchema, signUpStart } from '@/modules/auth';
 import { cn } from '@/utils';
 import { AppDispatch } from '@/app/store';
 import { RootState } from '@/app/root-state';
-import { signUpStart } from '@/modules/auth/data';
 import { PasswordInput } from '@/shared';
 
 interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}

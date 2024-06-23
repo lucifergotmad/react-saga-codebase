@@ -42,7 +42,7 @@ export const saveUser = async (data: UserAddInput): Promise<string> => {
 export const removeUser = async (_id: string): Promise<string> => {
   try {
     const response = await request<unknown, unknown>({
-      url: `${USER_ENDPOINTS.deleteUser}/${_id}`,
+      url: `${USER_ENDPOINTS.deleteUser.url}/${_id}`,
       method: USER_ENDPOINTS.deleteUser.method,
     });
 
@@ -59,7 +59,7 @@ export const updateUser = async ({
 }: UserEditInput & IdType): Promise<string> => {
   try {
     const response = await request<UserEditInput, unknown>({
-      url: `${USER_ENDPOINTS.editUser}/${_id}`,
+      url: `${USER_ENDPOINTS.editUser.url}/${_id}`,
       method: USER_ENDPOINTS.editUser.method,
       data,
     });

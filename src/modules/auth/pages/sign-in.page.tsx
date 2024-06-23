@@ -17,7 +17,7 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (currentUser) {
-      navigate('/admin');
+      navigate('/admin/dashboard');
     }
   }, [currentUser, navigate]);
 

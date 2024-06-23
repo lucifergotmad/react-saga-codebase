@@ -6,7 +6,7 @@ import {
   DotFilledIcon,
 } from '@radix-ui/react-icons';
 
-import { cn } from '@/utils/design/classname';
+import { cn } from '@/utils';
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
@@ -29,7 +29,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      'focus:bg-zinc-100 flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[state=open]:bg-zinc-100 dark:focus:bg-zinc-800 dark:data-[state=open]:bg-zinc-800',
+      'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-zinc-100 data-[state=open]:bg-zinc-100 dark:focus:bg-zinc-800 dark:data-[state=open]:bg-zinc-800',
       inset && 'pl-8',
       className,
     )}

@@ -1,8 +1,9 @@
 import { HTMLAttributes } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 
-import { SignInInput, signInSchema } from '@/modules/auth/schemas';
+import { SignInInput, signInSchema, signInStart } from '@/modules/auth';
 import {
   Form,
   FormControl,
@@ -16,6 +17,7 @@ import { Button } from '@/shared/components/design/button';
 import { Input } from '@/shared/components/design/input';
 import { cn } from '@/utils';
 import { PasswordInput } from '@/shared';
+import { AppDispatch } from '@/app/store';
 
 interface SignInFormProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -26,13 +28,14 @@ const INITIAL_VALUES: SignInInput = {
 };
 
 export const SignInForm = ({ className, ...props }: SignInFormProps) => {
+  const dispatch = useDispatch<AppDispatch>();
   const formState = useForm<SignInInput>({
     defaultValues: INITIAL_VALUES,
     resolver: yupResolver(signInSchema),
   });
 
   const onSubmitHandler = (data: SignInInput) => {
-    console.log(data);
+    dispatch(signInStart(data));
   };
 
   return (

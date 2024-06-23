@@ -9,13 +9,13 @@ import {
   FormProvider,
 } from 'react-hook-form';
 
-import { cn } from '@/utils/design/classname';
+import { cn } from '@/utils';
 import { Label } from '@/shared/components/design/label';
 import {
   FormFieldContext,
   FormItemContext,
   useFormField,
-} from '@/shared/hooks/forms';
+} from '@/shared/hooks';
 
 const Form = FormProvider;
 
