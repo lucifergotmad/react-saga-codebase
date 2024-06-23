@@ -6,7 +6,7 @@ export const SearchNav = () => {
       <Input
         type="search"
         placeholder="Search..."
-        className="md:w-[100px] lg:w-[300px]"
+        className="hidden md:block md:w-[300px]"
       />
     </div>
   );

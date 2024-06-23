@@ -1,8 +1,8 @@
 import { IconMoon, IconSun } from '@tabler/icons-react';
+import { useEffect } from 'react';
 
 import { Button } from '@/shared/components/design/button';
-import { useTheme } from '@/shared/hooks/themes';
-import { useEffect } from 'react';
+import { useTheme } from '@/shared';
 
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();

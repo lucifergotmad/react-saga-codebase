@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { IconChevronsLeft, IconMenu2, IconX } from '@tabler/icons-react';
-import { Layout, LayoutHeader } from './design/layout';
-import { CustomButton } from './custom/custom-button';
-import { cn } from '@/utils/design/classname';
-import { sidelinks } from '@/pages/side-links';
-import { SideNav } from './side-nav';
+
+import { cn } from '@/utils';
+import { Layout, LayoutHeader } from '@/shared/components/design/layout';
+import { Button } from '@/shared/components/design/button';
+import { SideNav, sidelinks } from '@/shared';
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   isCollapsed: boolean;
@@ -90,7 +90,7 @@ export const Sidebar = ({
           </div>
 
           {/* Toggle Button in mobile */}
-          <CustomButton
+          <Button
             variant="ghost"
             size="icon"
             className="md:hidden"
@@ -100,7 +100,7 @@ export const Sidebar = ({
             onClick={() => setNavOpened((prev) => !prev)}
           >
             {navOpened ? <IconX /> : <IconMenu2 />}
-          </CustomButton>
+          </Button>
         </LayoutHeader>
 
         {/* Navigation links */}
@@ -115,7 +115,7 @@ export const Sidebar = ({
         />
 
         {/* Scrollbar width toggle button */}
-        <CustomButton
+        <Button
           onClick={() => setIsCollapsed((prev) => !prev)}
           size="icon"
           variant="outline"
@@ -125,7 +125,7 @@ export const Sidebar = ({
             stroke={1.5}
             className={`h-5 w-5 ${isCollapsed ? 'rotate-180' : ''}`}
           />
-        </CustomButton>
+        </Button>
       </Layout>
     </aside>
   );

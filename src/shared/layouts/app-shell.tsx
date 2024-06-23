@@ -1,11 +1,18 @@
-import { cn } from '@/utils/design/classname';
 import { Outlet } from 'react-router-dom';
-import { useIsCollapsed } from '../hooks/themes';
-import { Sidebar } from '../components/sidebar';
-import { Layout, LayoutBody, LayoutHeader } from '../components/design/layout';
-import { ThemeToggle } from '../components/theme-toggle';
-import { UserNav } from '../components/user-nav';
-import { SearchNav } from '../components/search-nav';
+
+import {
+  Layout,
+  LayoutBody,
+  LayoutHeader,
+} from '@/shared/components/design/layout';
+import {
+  Sidebar,
+  ThemeToggle,
+  SearchNav,
+  UserNav,
+  useIsCollapsed,
+} from '@/shared';
+import { cn } from '@/utils';
 
 export const AppShell = () => {
   const [isCollapsed, setIsCollapsed] = useIsCollapsed();
@@ -22,8 +29,8 @@ export const AppShell = () => {
         )}
       >
         <Layout>
-          <LayoutHeader>
-            <div className="ml-auto flex items-center space-x-4">
+          <LayoutHeader className="hidden md:flex">
+            <div className="ml-auto hidden items-center space-x-4 md:flex">
               <SearchNav />
               <ThemeToggle />
               <UserNav />

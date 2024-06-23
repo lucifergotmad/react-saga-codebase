@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../components/design/button';
+
+import { Button } from '@/shared/components/design/button';
 
 export const NotFound = () => {
   const navigate = useNavigate();

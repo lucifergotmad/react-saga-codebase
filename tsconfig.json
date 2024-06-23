@@ -23,12 +23,7 @@
     /* Absolute Import */
     "baseUrl": "src",
     "paths": {
-      "@/*": ["./*"],
-      "@data/*": ["./data/*"],
-      "@assets/*": ["./assets/*"],
-      "@utils/*": ["./utils/*"],
-      "@pages/*": ["./pages/*"],
-      "@shared/*": ["./shared/*"]
+      "@/*": ["./*"]
     }
   },
   "include": ["src", "./jest.setup.ts"],

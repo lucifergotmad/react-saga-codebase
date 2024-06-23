@@ -1,16 +1,7 @@
 import { createContext, useContext } from 'react';
-import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
-type FormFieldContextValue<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = {
-  name: TName;
-};
-
-type FormItemContextValue = {
-  id: string;
-};
+import { FormFieldContextValue, FormItemContextValue } from '@/shared';
 
 const FormFieldContext = createContext<FormFieldContextValue>(
   {} as FormFieldContextValue,
