@@ -29,8 +29,8 @@ export const AppShell = () => {
         )}
       >
         <Layout>
-          <LayoutHeader>
-            <div className="ml-auto flex items-center space-x-4">
+          <LayoutHeader className="hidden md:flex">
+            <div className="ml-auto hidden items-center space-x-4 md:flex">
               <SearchNav />
               <ThemeToggle />
               <UserNav />
